@@ -1,0 +1,15 @@
+{
+  "name": "exercise1",
+  "version": "1.0.0",
+  "description": "exerciese1 web interfaces HW",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Ocenas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
