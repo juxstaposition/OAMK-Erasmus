@@ -1,0 +1,468 @@
+openapi: 3.0.0
+info:
+  version: ''
+  title: School System
+  description: >-
+    Api for school system of students, courses and grades of students who are
+    attending particular courses
+paths:
+  '/course/{courseId}':
+    parameters:
+      - name: courseId
+        in: path
+        required: true
+        schema:
+          type: number
+    delete:
+      operationId: courseDelete
+      summary: Course Delete
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema: {}
+    put:
+      operationId: coursePut
+      summary: Course Put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema: {}
+  /grades:
+    put:
+      operationId: gradePut
+      summary: Grade Put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  student:
+                    type: number
+                  course:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        class:
+                          type: number
+                        grade:
+                          type: number
+                required:
+                  - student
+                  - course
+              example:
+                - student: -30654104
+                  course: culpa dolore
+                  grade: 51043966
+                - student: -70201547
+                  course: deserunt adipisicing sint Lorem minim
+                  grade: 43121397
+                - student: 35691956
+                  course: consectetur Ut
+                  grade: -96924246
+                - student: -43098309
+                  course: 95903234
+                  grade: 19471287
+      responses:
+        '404':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: could not find student
+        '405':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: could not find course
+    delete:
+      operationId: gradeDelete
+      summary: Grade Delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                student:
+                  type: number
+                class:
+                  type: number
+      responses:
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: could not find course
+        '405':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: could not find student
+    post:
+      operationId: gradePost
+      summary: Grade Post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                student:
+                  type: number
+                course:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      course:
+                        type: number
+                      grade:
+                        type: number
+              required:
+                - student
+                - course
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema: {}
+    get:
+      operationId: gradeGet
+      summary: Grade Get All
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    student:
+                      type: string
+                    course:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          class:
+                            type: string
+                          grade:
+                            type: number
+                        required:
+                          - class
+                          - grade
+                  required:
+                    - student
+                    - course
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Could not get all grades.
+  '/course/{coursId}':
+    parameters:
+      - name: coursId
+        in: path
+        required: true
+        schema:
+          type: number
+    get:
+      operationId: courseGetId
+      summary: Course Get Id
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  description:
+                    type: string
+                required:
+                  - id
+                  - name
+                  - description
+        '404':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: Could not get course.
+  /students:
+    get:
+      operationId: getAllStudents
+      summary: Student Get All
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    adress:
+                      type: string
+                    course:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                    - id
+                    - name
+                    - adress
+                    - course
+    post:
+      operationId: studentsPost
+      summary: Student Post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                adress:
+                  type: string
+                class:
+                  type: array
+                  items:
+                    type: string
+              example:
+                name: cillum dolore sint
+                adress: est Duis
+                class:
+                  - name: elit magna aute do cillum
+                  - {}
+      responses:
+        default:
+          description: ''
+          content:
+            '*/*':
+              schema: {}
+  /course:
+    get:
+      operationId: courseGet
+      summary: Course Get
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    description:
+                      type: string
+                  required:
+                    - id
+                    - name
+                    - description
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Could not get all courses.
+    post:
+      operationId: coursePost
+      summary: Course Post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+              required:
+                - name
+                - description
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema: {}
+  '/students/{studentsId}':
+    parameters:
+      - name: studentsId
+        in: path
+        required: true
+        schema:
+          type: number
+    get:
+      operationId: getStudentId
+      summary: Student Get by Id
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  adress:
+                    type: string
+                  class:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - id
+                  - name
+                  - adress
+                  - class
+        '404':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: Student not defined.
+    delete:
+      operationId: deleteStudent
+      summary: Student Delete
+      responses:
+        '404':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: could not find student
+    put:
+      operationId: studentsPut
+      summary: Student Put by Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                adress:
+                  type: string
+                class:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      class:
+                        type: string
+                      courses:
+                        type: array
+                        items:
+                          items: {}
+                          oneOf:
+                            - type: string
+                            - type: array
+                              items: {}
+      responses:
+        '404':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: Could not find student
+  '/grades/{studentId}':
+    parameters:
+      - name: studentId
+        in: path
+        required: true
+        schema:
+          type: number
+    get:
+      operationId: gradeGetId
+      summary: Grade Get Student Grades
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  student:
+                    type: string
+                  courses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        class:
+                          type: string
+                        grade:
+                          type: number
+                      required:
+                        - class
+                        - grade
+                required:
+                  - student
+                  - courses
+        '404':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: string
+                description: Could not get grades of student.
