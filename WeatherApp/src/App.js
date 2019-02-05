@@ -45,8 +45,7 @@ class App extends React.Component {
 
     toggleWindow = param => {
         if ((param !== null && param !== "top")){
-            
-            const i = this.findCity(param);
+            const i = this.findCity(param.name);
 
             this.setState({
                 name: this.citiesArr[i].name,
@@ -168,11 +167,13 @@ class App extends React.Component {
             window: true,
         });
     }
-
+    
+    //style={{width: 400, height: 400, resizeMode, backgroundImage: 'url(https://image.freepik.com/free-photo/blue-sky-with-cloud-clean-energy-power-clear-weather-background_43284-844.jpg)' }}
+    
     render () { 
         const resizeMode = 'center';
         return (
-            <div style={{width: 400, height: 400, resizeMode, backgroundImage: 'url(https://image.freepik.com/free-photo/blue-sky-with-cloud-clean-energy-power-clear-weather-background_43284-844.jpg)' }}>
+            <div>
                 <Title/>
                 {
                     this.state.window 
