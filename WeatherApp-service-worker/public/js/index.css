@@ -1,0 +1,122 @@
+body {
+    /* background-image: url(./background.jpg); */
+    background-color: #1a75ff;
+    background-size: auto 100%; 
+    background-position: fixed;
+    background-attachment: fixed;
+}
+
+.Autocomplete {
+    position: relative;
+    text-align: left;
+    width: 180.5px;
+    background-color: linear-gradient(#eee, #fff);
+    border: 1px linear-gradient(#eee, #fff);
+    z-index: 4;
+}
+
+.Autocomplete input {
+    border-radius: 8px;
+    border: none;
+    margin-left: 62px;
+    width: 100%;
+    background-color: linear-gradient(#eee, #fff);
+    border: 1px linear-gradient(#eee, #fff);
+    padding: 7px 5px;
+}
+
+.Autocomplete ul {
+    width: 180.5px;
+    margin: 1px;
+    margin-top: 1px;
+    margin-left: 62px;
+    padding: 0px 5px;
+    border-radius: 8px;
+    list-style-position: outside; 
+    border: none;
+    list-style-type: none;
+    text-align: left;
+    background: white;
+    position: absolute;
+    z-index: 3;
+}
+
+.Autocomplete ul::before {
+    text-align: left;
+    content: "";
+}
+
+.Autocomplete ul li {
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.form {
+    position: fixed;
+    margin-left: 62px;
+    margin-top: 10px;
+    z-index:1;
+    text-align: center; 
+}
+
+.cityArr{
+    position:fixed;
+    margin-top: 36px;
+    margin-left: 62px;
+    z-index:1;  
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.Weather{
+    margin-left: 45px;
+}
+
+.button{  
+    background-color: #6666ff;
+    border: solid;
+    border-color: #000099;
+    color: black;
+    margin-left: 63px;
+    border-radius: 8px;
+    width: 60px;
+    height: 30px;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.title{
+    margin-left: 65px;
+}
+.error{
+    margin-left: 70px;
+}
+.cityTop{
+    padding: 10px 5px;
+    cursor: pointer;
+    margin-left: 58px;
+}
+
+.imageNow{
+    position: relative;
+    top: 48px;
+    margin-left: 65px;
+    height: 100px;
+    width: 100px;
+}
+
+.temperature{
+    position: relative;
+    bottom: 65px;
+    left: 45px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.forecast{
+    position: relative;
+    left: 45px;
+    margin-top: -55px;
+}
