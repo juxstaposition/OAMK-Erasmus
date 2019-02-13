@@ -65,8 +65,24 @@ class App extends React.Component {
                 temp4: this.citiesArr[i].temp4,
             });
         }
-        else if(param === "top") {
-            this.state = this.cityTop;            
+        else if(param === "top") {            
+            this.setState({
+                name: this.cityTop.name,
+                temperature: this.cityTop.temperature,
+                id: this.cityTop.id,
+                name: this.cityTop.name,
+                country: this.cityTop.country,
+                saveButton: this.cityTop.saveButton, //maybe just false
+                error: this.cityTop.error,
+                day1: this.cityTop.day1,
+                day2: this.cityTop.day2,
+                day3: this.cityTop.day3,
+                day4: this.cityTop.day4,
+                temp1: this.cityTop.temp1,
+                temp2: this.cityTop.temp2,
+                temp3: this.cityTop.temp3,
+                temp4: this.cityTop.temp4,
+            });           
         }
 
         this.setState(state => ({ window: !state.window }));
@@ -91,7 +107,7 @@ class App extends React.Component {
 
     getWeather = async (val) => {
         val.preventDefault();
-        // data reading from imput
+        // reading string from input box
         const cityString = val.target.elements.city.value;
         
         if (cityString) {
@@ -101,7 +117,7 @@ class App extends React.Component {
             
             if (city_found){
                 // city data is optained, not yed checked with the list, I can call Api for current weather
-                const ApiCallWeather = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=metric`);
+                const ApiCallWeather = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city[0]},${city[1]}&appid=${ApiKey}&units=metric`);
                 const dataTemp = await ApiCallWeather.json();
                 // city was read successfuly
                 // now I can store data
@@ -130,50 +146,64 @@ class App extends React.Component {
                         temp4: dataForecast.list[31].main.temp
                     });
                     this.cityTop = JSON.parse(JSON.stringify(this.state));
-                    
-                    this.setState({
-                        window: true,
-                    })
                 }
                 else {
-                    this.setState({
+                    this.cityTop = {
                         name: undefined,
                         error: "No internet conection."
-                    });
+                    };
                 }
             }
             else{
-                this.setState({
+                this.cityTop = {
                     name: undefined,
-                    error: "This is not a city!"
-                });
+                    error: "This is not a city!",
+                };
             }
         }
         else{
             // At the beggining, if submission occurs before searching city, I handle error
-            this.setState({
+            this.cityTop = {
                 name: undefined,
                 error: "You should enter city name!"
-            });
+            };
         }
+
+        this.setState({
+            window: true,
+        })
     }
 
-    componentDidMount(){
+    componentDidMount = async() =>{
         let list = localStorage.getItem('myCities');
         if (list){ // 'myCities' exist in local storage
-            this.citiesArr = JSON.parse(list);            
+            this.citiesArr = JSON.parse(list); 
+            for (var i=0;i<this.citiesArr.length;i++){
+                const ApiCallWeather = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.citiesArr[i].name},${this.citiesArr[i].country}&appid=${ApiKey}&units=metric`);
+                const ApiCallForecast = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.citiesArr[i].name},${this.citiesArr[i].country}&appid=${ApiKey}&units=metric`);
+                const dataTemp = await ApiCallWeather.json();
+                const dataForecast = await ApiCallForecast.json();
+                this.citiesArr[i].temperature = dataTemp.main.temp;    
+                this.citiesArr[i].day1= dataForecast.list[7].dt_txt;
+                this.citiesArr[i].day2= dataForecast.list[15].dt_txt;
+                this.citiesArr[i].day3= dataForecast.list[23].dt_txt;
+                this.citiesArr[i].day4= dataForecast.list[31].dt_txt;
+                this.citiesArr[i].temp1= dataForecast.list[7].main.temp;
+                this.citiesArr[i].temp2= dataForecast.list[15].main.temp;
+                this.citiesArr[i].temp3= dataForecast.list[23].main.temp;
+                this.citiesArr[i].temp4= dataForecast.list[31].main.temp;
+            }
+
         }
         this.setState({
             window: true,
         });
+        console.log("component Mounter");
     }
     
-    //style={{width: 400, height: 400, resizeMode, backgroundImage: 'url(https://image.freepik.com/free-photo/blue-sky-with-cloud-clean-energy-power-clear-weather-background_43284-844.jpg)' }}
-    
     render () { 
-        const resizeMode = 'center';
         return (
-            <div>
+            <div >
                 <Title/>
                 {
                     this.state.window 
@@ -184,7 +214,7 @@ class App extends React.Component {
                             toggleWindow = {this.toggleWindow}
                             name = {this.cityTop.name}
                             country = {this.cityTop.country}
-                            error = {this.state.error}
+                            error = {this.cityTop.error}
                             temperature = {this.cityTop.temperature} 
                         />
                     :   <Weather 

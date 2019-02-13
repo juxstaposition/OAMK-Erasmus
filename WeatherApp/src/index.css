@@ -1,0 +1,70 @@
+body {
+    background: url(./components/background.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.Autocomplete {
+    position: relative;
+    text-align: left;
+    width: 12%;
+    background-color: linear-gradient(#eee, #fff);
+    border: 1px linear-gradient(#eee, #fff);
+    margin: auto;
+    z-index: 4;
+}
+
+.Autocomplete input {
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    background-color: linear-gradient(#eee, #fff);
+    border: 1px linear-gradient(#eee, #fff);
+    padding: 7px 5px;
+}
+
+.Autocomplete ul {
+    width: 180.5px;
+    margin: 1px;
+    margin-top: 1px;
+    padding: 7px 5px;
+    border-radius: 8px;
+    list-style-position: outside; 
+    border: none;
+    list-style-type: none;
+    text-align: left;
+    background: white;
+    position: absolute;
+    z-index: 3;
+}
+
+.Autocomplete ul::before {
+    text-align: left;
+    content: "";
+}
+
+.Autocomplete ul li {
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.form {
+    position: fixed;
+    margin-left: 46.2%;
+    margin-top: 10px;
+    z-index:1;
+    text-align: center; 
+}
+
+.cityArr{
+    position:fixed;
+    margin-top: 36px;
+    margin-left: 42.5%;
+    z-index:1;  
+}
+
+.pointer{
+    cursor: pointer;
+}

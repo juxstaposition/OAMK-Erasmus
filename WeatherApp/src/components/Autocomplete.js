@@ -4,7 +4,6 @@ class Autocomplete extends React.Component {
     constructor(props){
         super(props);
         this.citiesNames = this.props.citiesNames;
-
         this.state = {
             suggestions: [],
             text: "",
@@ -34,12 +33,14 @@ class Autocomplete extends React.Component {
             return null;
         }
         return(
-            <ul >
-                {suggestions.map((item) => 
-                <center><p onClick={() => this.suggestionsSelected(item)}>
-                    {item}
-                </p></center>)}
-            </ul>
+            <div>
+                <ul className="Autocomplete">
+                    {suggestions.map((item) => 
+                    <li onClick={() => this.suggestionsSelected(item)}>
+                        {item}
+                    </li>)}
+                </ul>
+            </div>
         )
     }
     
@@ -47,10 +48,16 @@ class Autocomplete extends React.Component {
     render () {
         const { text } = this.state;
         return (
-            <div>
-                <center><form onSubmit={this.props.getWeather}>
-                    <input value={text} onChange={this.onTextChange} type="text" name="city" size="24" placeholder="Enter city name,case sensitive"/>      
-                </form></center>
+            <div className="Autocomplete">
+                <form  onSubmit={this.props.getWeather}>
+                    <center><input 
+                        value={text}
+                        onChange={this.onTextChange} 
+                        type="text"
+                        name="city"
+                        size="24"
+                        placeholder="Enter city name,case sensitive"/></center>    
+                </form>
                 {this.renderSuggestions()}
             </div>
         )
