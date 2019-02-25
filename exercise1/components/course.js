@@ -1,69 +1,52 @@
 const express = require('express');
+const data = require('../dataStore');
 let router = express.Router();
 
-const courseData = {
-	course: [
-    {
-		id: 1,
-		name:"Web Interfaces",
-		description:"Learning api, REST, express, cordova"
-    },
-    {
-		id: 2,
-		name:"Mobile Physics",
-		description:"Learning data processing of sensors inside mobile devices"
-    },
-    {
-		id: 3,
-		name:"Hybrid app developements",
-		description:"App developements"
-    }
-]}
+router.get('/',(req,res) => 
+	res.json(data.getAll("course"))
+);
 
-router.get('/',(req,res) => res.json(courseData.course));
 router.get('/:courseId',(req,res) => { 
-	const resultCourse = courseData.course.find(d => {
-		if (d.id == req.params.courseId){
-			return true;
-		}
-		else {
-			return false;
-		}
-	});
+	const resultCourse = data.findById(req.params.courseId,"course");
 
 	if (resultCourse === undefined)
 	{
-		res.sendStatus(404)
+		res.sendStatus(404);
+		console.log("could not find course with id: ",req.params.courseId);
 	}
 	else
 	{
-		res.json(resultCourse);
+		res.json(data.getById(resultCourse,"course"));
+		console.log("course get by id works");
 	}
 })
 
 router.post('/', (req,res) => {
-	courseData.course.push({
-		id: courseData.course.length + 1,
-		name: req.body.name,
-		description: req.body.description,
-	});
+	data.postById(req.body,"course");
 	res.send('course post works');
 })
 
 router.put('/:courseId',(req,res) => { 
-	for (var i = 0; i < courseData.course.length; i++) {
-		if (courseData.course[i].id === req.param.courseId) {
-			courseData.course[i].name = req.body.name;
-			courseData.course[i].description = req.body.description;
-			break;
-		}
-	}
-	res.send('course updated');
-}) 
+	const resultCourse = data.findById(req.params.courseId,"course");
 
-router.delete('/', (req,res) => {
-	courseData.course.pop(req.body);
-	res.send('course deleted');
+	if (resultCourse === undefined){
+		res.sendStatus(404);
+		console.log("could not find course with id: ",req.params.courseId);
+	}
+	else{
+		data.putById(resultCourse,req.body,"course");
+		res.send('course updated');
+		console.log("course updated, id: ", req.params.courseId);
+	}
+});
+
+router.delete('/:courseId', (req,res) => {
+	const message = data.deleteById(req.params.courseId,"course",req,res);
+	if (message === "could not find course"){
+		res.sendStatus(404);
+	}
+	res.send(message);
+
 })
 
 module.exports = router;
