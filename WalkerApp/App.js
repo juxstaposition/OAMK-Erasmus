@@ -73,7 +73,9 @@ export default class AccelerometerSensor extends React.Component {
     /*console.log("________________________");
     console.log("x= ",x,"; y= ",y,"; z= ",z);
     console.log("new = ",currentData);
-    console.log(speedData);*/
+    console.log(speedData);
+    console.log("________________________");
+*/
     
     speedData.push(currentData);
     
@@ -85,7 +87,7 @@ export default class AccelerometerSensor extends React.Component {
         average += speedData[i];
     }
     average = average / speedData.length;
-    console.log(average);
+    
     var movement;
     if (average < 1.08 && average > 1.01){
         movement = "WALKING";
@@ -96,8 +98,7 @@ export default class AccelerometerSensor extends React.Component {
     else{
         movement = "RUNNING"; 
     }
-    console.log("________________________");
-
+    
      
 
     return (
