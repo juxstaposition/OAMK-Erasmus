@@ -69,10 +69,12 @@ export default class AccelerometerSensor extends React.Component {
     var average = 0;
     
     currentData = Math.sqrt(x*x + y*y + z*z);
-    console.log("________________________");
+    
+    /*console.log("________________________");
     console.log("x= ",x,"; y= ",y,"; z= ",z);
     console.log("new = ",currentData);
-    console.log(speedData);
+    console.log(speedData);*/
+    
     speedData.push(currentData);
     
     if ( speedData.length > 20 ) {
