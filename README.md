@@ -5,3 +5,4 @@
 <o>- subfolder exercise2 - The second homework, Web Interfaces </p>
 <p>- subfolder WeatherApp - Weather Application, class Hybrid Applications Developement</p>
 <p>- subfolder WeatherAppPWA - Progressive Web Application - Weather App, class Hybrid Applications Developement</p>
+<p>- subfolder WalkerApp - Application which detects walking and running, class Hybrid Applications Developement</p>

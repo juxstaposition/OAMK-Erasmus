@@ -42,20 +42,11 @@ export default class AccelerometerSensor extends React.Component {
   _subscribe = () => {
    
       this._subscription = Accelerometer.addListener(Data => {
+        
             this.setState({ 
                 accelerometerData: Data,
             });
-        /*
-        if ( boolFirst ){
-            console.log("subscribing new");
-            newData = Math.sqrt( Data.x^2 + Data.y^2 + Data.z^2);
-        }
-        else {
-            boolFirst = true;
-            console.log("subscribing last");
-            lastData = Math.sqrt( Data.x^2 + Data.y^2 + Data.z^2);
-        }*/
-
+        
     });
   }
 
