@@ -4,6 +4,7 @@ import { Accelerometer } from 'expo';
 
 let currentData = parseInt("0");
 let speedData = [0];
+let color;
 
 export default class AccelerometerSensor extends React.Component {
   state = {
@@ -42,11 +43,20 @@ export default class AccelerometerSensor extends React.Component {
   _subscribe = () => {
    
       this._subscription = Accelerometer.addListener(Data => {
-        
             this.setState({ 
                 accelerometerData: Data,
             });
-        
+        /*
+        if ( boolFirst ){
+            console.log("subscribing new");
+            newData = Math.sqrt( Data.x^2 + Data.y^2 + Data.z^2);
+        }
+        else {
+            boolFirst = true;
+            console.log("subscribing last");
+            lastData = Math.sqrt( Data.x^2 + Data.y^2 + Data.z^2);
+        }*/
+
     });
   }
 
@@ -60,13 +70,13 @@ export default class AccelerometerSensor extends React.Component {
     var average = 0;
     
     currentData = Math.sqrt(x*x + y*y + z*z);
-    
-    /*console.log("________________________");
+    /*
+    console.log("________________________");
     console.log("x= ",x,"; y= ",y,"; z= ",z);
     console.log("new = ",currentData);
     console.log(speedData);
     console.log("________________________");
-*/
+    */
     
     speedData.push(currentData);
     
@@ -82,37 +92,42 @@ export default class AccelerometerSensor extends React.Component {
     var movement;
     if (average < 1.08 && average > 1.01){
         movement = "WALKING";
+        color = '#00ffff';
     }
     else if (average <= 1.01){
         movement = "Laying"; 
+        color = '#ffffff';
     }
     else{
         movement = "RUNNING"; 
+        color = '#0000ff';
     }
     
      
 
     return (
-      <View style={styles.sensor}>
-        <Text>Accelerometer:</Text>
-        <Text>x: {x} y: {y} z: {z}</Text>
-        <Text>total acceleration = {currentData}</Text>
-        <Text>avg: {average}</Text>
-        <Text style={styles.myText} >{movement}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={this._toggle} style={styles.button}>
-            <Text>Toggle</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this._x1} style={[styles.button, styles.middleButton]}>
-            <Text>x1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this._x2} style={[styles.button, styles.middleButton]}>
-            <Text>x2</Text>
-          </TouchableOpacity>          
-          
-          <TouchableOpacity onPress={this._x3} style={[styles.button, styles.middleButton]}>
-            <Text>x3</Text>
-          </TouchableOpacity>
+      <View style={StyleSheet.flatten([styles.container,{backgroundColor: color}])}>
+        <View style={styles.sensor}>
+          <Text>Accelerometer:</Text>
+          <Text>x: {x} y: {y} z: {z}</Text>
+          <Text>total acceleration = {currentData}</Text>
+          <Text>avg: {average}</Text>
+          <Text style={styles.myText} >{movement}</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={this._toggle} style={styles.button}>
+              <Text>Toggle</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this._x1} style={[styles.button, styles.middleButton]}>
+              <Text>x1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this._x2} style={[styles.button, styles.middleButton]}>
+              <Text>x2</Text>
+            </TouchableOpacity>          
+            
+            <TouchableOpacity onPress={this._x3} style={[styles.button, styles.middleButton]}>
+              <Text>x3</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -129,7 +144,8 @@ function round(n) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#ffffff',
   },
   buttonContainer: {
     flexDirection: 'row',
