@@ -1,22 +1,5 @@
 'use strict'
-
-const courses = [
-  {
-  id: 1,
-  name:"Web Interfaces",
-  description:"Learning api, REST, express, cordova"
-  },
-  {
-  id: 2,
-  name:"Mobile Physics",
-  description:"Learning data processing of sensors inside mobile devices"
-  },
-  {
-  id: 3,
-  name:"Hybrid app developements",
-  description:"App developements"
-  }
-]
+const data = require('../dataStore');
 
 module.exports.funccoursecoursIdPARAMETERS = function funccoursecoursIdPARAMETERS(req, res, next) {
   res.send({
@@ -25,5 +8,16 @@ module.exports.funccoursecoursIdPARAMETERS = function funccoursecoursIdPARAMETER
 };
 
 module.exports.courseGetId = function courseGetId(req, res, next) {
-  res.send(courses[req.coursId.value]);
+  const resultCourse = data.findById(req.coursId.value,"course");
+
+	if (resultCourse === undefined)
+	{
+		res.sendStatus(404);
+		console.log("could not find course with id: ",req.params.courseId);
+	}
+	else
+	{
+		res.json(data.getById(resultCourse,"course"));
+		console.log("course get by id works");
+	}
 };

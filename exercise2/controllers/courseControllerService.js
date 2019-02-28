@@ -1,25 +1,8 @@
 'use strict'
-
-const courses = [
-    {
-		id: 1,
-		name:"Web Interfaces",
-		description:"Learning api, REST, express, cordova"
-    },
-    {
-		id: 2,
-		name:"Mobile Physics",
-		description:"Learning data processing of sensors inside mobile devices"
-    },
-    {
-		id: 3,
-		name:"Hybrid app developements",
-		description:"App developements"
-    }
-]
+const data = require('../dataStore');
 
 module.exports.courseGet = function courseGet(req, res, next) {
-  res.send(courses);
+  res.json(data.getAll("course"))
 };
 
 module.exports.coursePost = function coursePost(req, res, next) {

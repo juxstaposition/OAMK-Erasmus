@@ -1,22 +1,5 @@
 'use strict'
-
-const courses = [
-  {
-  id: 1,
-  name:"Web Interfaces",
-  description:"Learning api, REST, express, cordova"
-  },
-  {
-  id: 2,
-  name:"Mobile Physics",
-  description:"Learning data processing of sensors inside mobile devices"
-  },
-  {
-  id: 3,
-  name:"Hybrid app developements",
-  description:"App developements"
-  }
-]
+const data = require('../dataStore');
 
 module.exports.funccoursecourseIdPARAMETERS = function funccoursecourseIdPARAMETERS(req, res, next) {
   res.send({
@@ -25,8 +8,12 @@ module.exports.funccoursecourseIdPARAMETERS = function funccoursecourseIdPARAMET
 };
 
 module.exports.courseDelete = function courseDelete(req, res, next) {
-  courses.splice(req.courseId.value, 1);
-  res.send("course delete works");
+  const message = data.deleteById(req.courseId.value,"course");
+	if (message === "could not find course"){
+		res.sendStatus(404);
+	}
+	res.send(message);
+
 };
 
 module.exports.coursePut = function coursePut(req, res, next) {
