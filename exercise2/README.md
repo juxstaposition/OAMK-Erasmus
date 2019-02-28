@@ -11,3 +11,54 @@ npm start
 ```
 
 This project leverages the mega-awesome [oas-tools](https://github.com/isa-group/oas-tools) middleware which does most all the work.
+
+
+<pre>
+This is exercise 2, Web interfaces
+
+Example routes and bodies:
+get -   http://localhost:3000/students
+        http://localhost:3000/students/{id}
+        http://localhost:3000/course
+        http://localhost:3000/course/{id}
+        http://localhost:3000/grades
+
+post -  http://localhost:3000/students
+        body -  {
+                    "name":"Example name",
+                    "adress":"Example adress",
+                    "class":[
+                        {
+                            "name": "Hybrid Application Developement"
+                        }
+                    ]
+                }
+
+        http://localhost:3000/course
+        body -  {
+                    "name":"Post Example",
+                    "description":"Post Example"
+                }
+
+        http://localhost:3000/grades
+
+put -   http://localhost:3000/students/{id}
+        body -  {
+                    "name":"Put student name example",
+                    "adress":"Example adress"
+                }
+
+        http://localhost:3000/course/{id}
+        body -  {
+                    "name":"Mobile Physics",
+                    "description":"Learning data processing of sensors inside mobile devices"
+                }
+
+        http://localhost:3000/grades
+
+
+delete  http://localhost:3000/students/{id}
+        http://localhost:3000/course/{id}
+        http://localhost:3000/grades
+
+</pre>
