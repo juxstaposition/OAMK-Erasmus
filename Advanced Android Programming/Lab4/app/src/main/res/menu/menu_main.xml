@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="electricity.bill.lab4.MainActivity">
+    <item
+        android:id="@+id/stock_monitor"
+        android:orderInCategory="100"
+        android:title="@string/stock_monitor"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/stock_monitor_v2"
+        android:orderInCategory="100"
+        android:title="@string/stock_monitor_v2"
+        app:showAsAction="never" />
+</menu>

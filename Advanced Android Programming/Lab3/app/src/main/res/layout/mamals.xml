@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/animal_text1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25sp"
+        android:text="@string/press_to_hear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <GridLayout
+        app:layout_constraintTop_toTopOf="@+id/animal_text1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_bear"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_row="0"
+            android:gravity="center"
+            android:src="@drawable/bear"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:scaleType="fitXY"
+            />
+
+        <ImageView
+            android:id="@+id/img_elephant"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_gravity="fill"
+            android:gravity="center"
+            android:src="@drawable/elephant"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:scaleType="fitXY"
+            />
+        <ImageView
+            android:id="@+id/img_wolf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:scaleType="fitXY"
+            android:layout_gravity="fill"
+            android:gravity="center"
+            android:src="@drawable/wolf"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+        <ImageView
+            android:id="@+id/img_lamb"
+            android:layout_width="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_gravity="fill"
+            android:scaleType="fitXY"
+            android:gravity="center"
+            android:src="@drawable/lamb"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            />
+    </GridLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab4 Simple Http</string>
+    <string name="stock_monitor">Stock Monitor</string>
+    <string name="stock_monitor_v2">Stock Monitor V2</string>
+</resources>

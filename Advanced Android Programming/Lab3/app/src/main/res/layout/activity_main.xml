@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_marginTop="56dp"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/red"
+        android:gravity="center"
+        android:textSize="70sp"/>
+
+    <Button
+        android:id="@+id/button_activities"
+        android:layout_gravity="bottom|end"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Activities" />
+
+    <Button
+        android:id="@+id/button_zoo"
+        android:layout_gravity="top|end"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Zoo"
+        app:layout_anchor="@id/button_activities"
+        app:layout_anchorGravity="top"/>
+    <Button
+        android:id="@+id/button_timer"
+        android:layout_gravity="top|end"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Timer"
+        app:layout_anchor="@id/button_zoo"
+        app:layout_anchorGravity="top"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

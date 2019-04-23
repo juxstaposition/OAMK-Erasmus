@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lab3</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+    <string name="yellow">yellow</string>
+    <string name="mammals">mammals</string>
+    <string name="birds">birds</string>
+    <string name="press_to_hear">Press animal to hear it</string>
+
+</resources>
