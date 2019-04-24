@@ -38,14 +38,14 @@ public class StockGetter {
 
                         JSONObject company;
                         String price;
+
                         try{
                             company = response.getJSONObject(id);
-                            try{
 
+                            try{
                                 price = String.valueOf(company.get("price"));
                                 stockList.add(name + ": " + price + " USD");
                                 myListView.setAdapter(aa);
-
                             } catch (JSONException e){
                                 e.printStackTrace();
                             }

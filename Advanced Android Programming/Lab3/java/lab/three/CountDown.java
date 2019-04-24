@@ -26,7 +26,7 @@ public class CountDown extends AppCompatActivity {
         int timeInt = 0;
         try{
             timeInt = Integer.parseInt(timeString) * 1000;
-        }catch(NumberFormatException nfe) {
+        } catch(NumberFormatException nfe) {
             System.out.println("Could not parse " + nfe);
         }
 
